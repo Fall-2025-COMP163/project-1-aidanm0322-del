@@ -1,0 +1,7 @@
+Character Name:Hero3
+Class:Rogue
+Level:1
+Strength:5
+Magic:15
+Health:80
+Gold:100
