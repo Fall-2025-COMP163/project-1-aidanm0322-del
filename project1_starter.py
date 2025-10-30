@@ -170,9 +170,16 @@ def level_up(character):
     Modifies the character dictionary directly
     Returns: None
     """
+    
+    character['level'] += 1 
+    strength,magic,health = calculate_stats(character['class'],character['level'])
+    character['strength'] = strength
+    character['magic'] = magic
+    character['health'] = health
+
     # TODO: Implement this function
     # Remember to recalculate stats for the new level
-    pass
+    return character
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
