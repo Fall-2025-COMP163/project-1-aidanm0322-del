@@ -3,7 +3,7 @@ COMP 163 - Project 1: Character Creator & Saving/Loading
 Name: Aidan Miles 
 Date: 10-22-2025
 
-AI Usage: [Document any AI assistance used]
+AI Usage: #used ai to help with file error handeling and also the load 
 Example: AI helped with file I/O error handling logic in save_character function
 """
 import os   
@@ -18,7 +18,7 @@ def create_character(name, character_class):
     """
      # TODO: Implement this function
     # Remember to use calculate_stats() function for stat calculation
-    
+    #dictonary with key value pairs of the creation of the character 
     character_creation={"name": name,"class": character_class,"level":1,"strength":5,"magic":15,"health":80,"gold":100}
     
     return character_creation
@@ -37,7 +37,7 @@ def calculate_stats(character_class, level):
     """
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
-
+#Editing stats based off class of the character 
     if character_class == "Warrior":
         strength = 20 + (level*6)
         magic = 5 + (level*2)
@@ -76,6 +76,11 @@ def save_character(character, filename):
     """
     if character == {} or filename == "":
         return False
+    
+    directory = os.path.dirname(filename)
+    if directory != "" and not os.path.exists(directory):
+        return False
+
 
     file = open(filename,"w")
     file.write(f"Character Name:{character['name']}\n")
@@ -98,16 +103,31 @@ def load_character(filename):
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
+    #I used ai to help me with the os.path portion of the code to handle the file errors 
     if not os.path.exists(filename):   
         return None
-        
+    
+    file=open(filename,"r")    
     character={}
-    file=open(filename,"r")
+
     #needed ai assitance with the key,value part of the for loop
     for line in file:
         key,value = line.strip().split(":") 
-        character[key] = value.strip() 
-    
+        value = value.strip()
+        if key == "Character Name":
+            character["name"] = value
+        elif key == "Class":
+            character["class"] = value
+        elif key == "Level":
+            character["level"] = int(float(value))
+        elif key == "Strength":
+            character["strength"] = int(float(value))
+        elif key == "Magic":
+            character["magic"] = int(float(value))
+        elif key == "Health":
+            character["health"] = int(float(value))
+        elif key == "Gold":
+            character["gold"] = int(float(value))
     file.close()
     return character
 
@@ -118,13 +138,6 @@ def load_character(filename):
     
 
 def display_character(character):
-    print("=== CHARACTER SHEET ===")
-    
-    
-    
-    
-    
-    
     """
     Prints formatted character sheet
     Returns: None (prints to console)
@@ -139,8 +152,17 @@ def display_character(character):
     Health: 80
     Gold: 100
     """
+    print("=== CHARACTER SHEET ===")
+    print(f"Name: {character['name']}")
+    print(f"Class: {character['class']}")
+    print(f"Level: {character['level']}")
+    print(f"Strength: {character['strength']}")
+    print(f"Magic: {character['magic']}")
+    print(f"Health: {character['health']}")
+    print(f"Gold: {character['gold']}")
+
     # TODO: Implement this function
-    pass
+   
 
 def level_up(character):
     """
@@ -161,6 +183,7 @@ if __name__ == "__main__":
     print(calculate_stats("Mage",5))
     print(calculate_stats("Rogue",5))
     print(calculate_stats("Cleric",5))
+    print(display_character("Aidan"))
     # Example usage:
     # char = create_character("TestHero", "Warrior")
     # display_character(char)

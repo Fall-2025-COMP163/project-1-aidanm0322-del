@@ -1,7 +1,0 @@
-Character Name:Hero2
-Class:Mage
-Level:1
-Strength:5
-Magic:15
-Health:80
-Gold:100
