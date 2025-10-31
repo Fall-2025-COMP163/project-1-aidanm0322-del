@@ -3,20 +3,29 @@
 # COMP 163 - Project 1: Character Creator & Chronicles
 # 🎯 Project Overview
 
+Ai Usage: I used ai to help with file error handling because if I didn't then my program would end up crashing. 
+
 Build a text-based RPG character creation and story progression system that demonstrates mastery of functions and file I/O operations.
+
+
 
 # Required Functions 
 Complete these functions in project1_starter.py:
 
 create_character(name, character_class) - Create new character
+Creates a new character dictionary with name and class, and comes in with pre-starting stats
 
 calculate_stats(character_class, level) - Calculate character stats
+Calculates the stats of a character based on their class and level 
 
 save_character(character, filename) - Save character to file
+Saves the character to a text file 
 
 load_character(filename) - Load character from file
+Loads the character that was previously saved from the text file back into the game 
 
 display_character(character) - Display character info
+Prints the character as a dictionary 
 
 level_up(character) - Increase character level
 
